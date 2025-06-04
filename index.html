@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sailbot Helper Interface Terminal</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="top-left-corner">
+        <div id="telemetry">
+            NOT CONNECTED
+        </div>
+        <div class="camera-image">
+            <button>Get Machine Vision Image</button>
+        </div>
+    </div>
+    <div id="compass">
+        <div id="compass-container">
+            <div id="compass-rose">
+                <div class="compass-marker n-marker">N</div>
+                <div class="compass-marker e-marker">E</div>
+                <div class="compass-marker s-marker">S</div>
+                <div class="compass-marker w-marker">W</div>                <svg id="compass-arrow" viewBox="0 0 50 100" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="25,0 50,85 25,70 0,85" fill="rgba(139, 125, 255, 1)"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div id="ui-controls">
+        <input id="TextInput" type="text" placeholder="Text Input" />
+        <div class="button-grid">
+            <button>Place Waypoints</button>
+            <button>Clear Waypoints</button>
+            <button>Place Restricted Area</button>
+            <button>Clear Restricted Area</button>
+            <button>Place Buoys</button>
+            <button>Clear Buoys</button>
+            <button>Enter Coordinates</button>
+            <button>Follow Boat</button>
+        </div>
+    </div>
+    <div id="map"></div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

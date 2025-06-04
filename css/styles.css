@@ -1,0 +1,187 @@
+/* Main page styling */
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+#map {
+    width: 100vw;
+    height: 100vh;
+    background: rgb(30, 30, 30);
+}
+
+#ui-controls {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 24px;
+    width: calc(100% - 96px);
+    max-height: 30vh;
+    overflow-y: auto;
+    margin: 0 auto;
+    z-index: 1000;
+    background: rgba(139, 224, 255, 0.75);
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    min-width: unset;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    margin: 0;
+    padding: 10px;
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 6px;
+    background: rgba(139, 125, 255, 0.85);
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+button:hover {
+    background: rgba(139, 125, 255, 1);
+}
+
+input {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-weight: bold;
+    background: rgba(139, 125, 255, 0.85);
+}
+input:focus {
+    outline: none;
+    background: rgba(139, 125, 255, 1);
+}
+input::placeholder {color: rgba(0, 0, 0, 0.75);  }
+
+#compass {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 1100;
+    background: rgba(139, 224, 255, 0.75);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 64px;
+    min-height: 64px;
+    width: 16vw;
+    height: 16vw;
+    justify-content: center;
+}
+
+#compass-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgba(139, 224, 255, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#compass-rose {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+#compass-arrow {
+    position: absolute;
+    height: 60%;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    transform-origin: center;
+    transition: transform 0.3s ease-out;
+    z-index: 10;
+}
+.compass-marker {
+    position: absolute;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.n-marker { top: 5%; left: 50%; transform: translateX(-50%); }
+.e-marker { right: 5%; top: 50%; transform: translateY(-50%); }
+.s-marker { bottom: 5%; left: 50%; transform: translateX(-50%); }
+.w-marker { left: 5%; top: 50%; transform: translateY(-50%); }
+
+#top-left-corner {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    z-index: 1100;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    min-width: 256px;
+    width: 32vw;
+    height: auto;
+    max-height: 75vh;
+    overflow-y: auto;
+
+}
+#top-left-corner img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+#telemetry {
+    min-height: 64px;
+    background: rgba(139, 224, 255, 0.75);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow-y: auto;
+    font-weight: bold;
+}
+
+.camera-image {
+    background: rgba(139, 224, 255, 0.75);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
