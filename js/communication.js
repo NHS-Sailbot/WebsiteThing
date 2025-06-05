@@ -40,6 +40,8 @@ function handleImage(image) {
     var base64 = image.imageData;
     var imageElement = document.getElementById("camera-image").getElementsByTagName("img")[0];
     imageElement.src = `data:image/${image.imageType};base64,${base64}`;
+    imageElement.style.display = "block";
+}
 
 function handleTelemetry(telemetry) {
     /* Example telemetry data structure
