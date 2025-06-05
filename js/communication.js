@@ -58,18 +58,16 @@ function handleTelemetry(telemetry) {
     moveBoat(telemetry.gps.latitude, telemetry.gps.longitude, telemetry.magnetometer.heading);
 
     var telemetryElement = document.getElementById("telemetry");
-    var formatedTelemetry = `
+    var formattedTelemetry = `
         GPS Fix: ${telemetry.gps.fix} <br>
-        Latitude: ${telemetry.gps.latitude.toFixed(6)} <br>
-        Longitude: ${telemetry.gps.longitude.toFixed(6)} <br>
-        Speed: ${telemetry.gps.speed.toFixed(2)} m/s <br>
-        Heading: ${telemetry.gps.heading.toFixed(2)}° <br>
-        Magnetometer Heading: ${telemetry.magnetometer.heading.toFixed(2)}° <br>
-        Wind Direction: ${telemetry.windSensor.direction.toFixed(2)}° <br>
+        Latitude: ${telemetry.gps.latitude} <br>
+        Longitude: ${telemetry.gps.longitude} <br>
+        Speed: ${telemetry.gps.speed} m/s <br>
+        Heading: ${telemetry.gps.heading}° <br>
+        Magnetometer Heading: ${telemetry.magnetometer.heading}° <br>
+        Wind Direction: ${telemetry.windSensor.direction}° <br>
     `;
-    telemetryElement.innerHTML = formatedTelemetry;
-    telemetryElement.style.display = "block"; // Show the telemetry element
-    document.getElementById("website-telemetry").innerText = `Lat: ${telemetry.gps.latitude.toFixed(6)} Lng: ${telemetry.gps.longitude.toFixed(6)}`;
+    telemetryElement.innerHTML = formattedTelemetry;
 }
 
 let callbacks   = {
