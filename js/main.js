@@ -20,13 +20,13 @@ document.addEventListener('DOMContentLoaded', function() {
     map.on("mousemove", (e) => { websiteTelemetry.innerText = `Lat: ${e.latlng.lat.toFixed(6)} Lng: ${e.latlng.lng.toFixed(6)}`; });
 
     
-    let currentClickHandler = null;
+    var currentClickHandler = null;
     map.on("click", (e) => { if (currentClickHandler) { currentClickHandler(e); } });
 
 
     // WAYPOINTS -----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    let waypointPolyline = null;
-    let waypointCircles = [];
+    var waypointPolyline = null;
+    var waypointCircles = [];
     function placeWaypoint(e) {
         var circle = L.circle(e.latlng, { radius: 10, color: 'green' }); // 10 meter radius that the boat will try to enter
         circle.addTo(map);
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // BOUYS ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    let buoyCircles = [];
+    var buoyCircles = [];
     function placeBuoy(e) {
         var circle = L.circle(e.latlng, { radius: 5, color: 'red' }); // 5 meter radius that we really don't want to hit
         circle.addTo(map);
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // RESTRICTED AREA --------------------------------------------------------------------------------------------------------------------------------------------------------
-    let restrictedLatlngs = [
+    var restrictedLatlngs = [
         // 4 points that make a square around the world so we can cut a hole in it
         [[90, -180],
         [90, 180],
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
         [-90, -180]],
         []
     ];
-    let restrictedAreaPolygon = null;
+    var restrictedAreaPolygon = null;
     function placeRestrictedAreaPoint(e) {
         restrictedLatlngs[1].push(e.latlng);
         if (restrictedLatlngs[1].length > 2) {
@@ -98,10 +98,76 @@ document.addEventListener('DOMContentLoaded', function() {
             alert("Invalid coordinates entered.");
         }
     });
-    document.getElementById('export-waypoints-button').addEventListener('click', () => {
-        // Export as json to file
+    document.getElementById('export-button').addEventListener('click', () => {
+        var objectToExport = {
+            waypoints: waypointCircles.map(circle => ({
+            lat: circle.getLatLng().lat,
+            lng: circle.getLatLng().lng
+            })),
+            buoys: buoyCircles.map(circle => ({
+            lat: circle.getLatLng().lat,
+            lng: circle.getLatLng().lng
+            })),
+            restrictedArea: restrictedLatlngs[1].map(latlng => ({
+            lat: latlng.lat,
+            lng: latlng.lng
+            }))
+        };
+        var data = JSON.stringify(objectToExport, null, 2);
+        var blob = new Blob([data], { type: 'application/json' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'waypoints.json';
+        a.click();
+        URL.revokeObjectURL(url);
+        a.remove();
+        
+        navigator.clipboard.writeText(data).catch(err => {
+            console.error('Failed to copy: ', err);
+            alert("Failed to copy waypoints to clipboard.");
+        });
     });
-    document.getElementById('import-waypoints-button').addEventListener('click', () => {
+    document.getElementById('import-button').addEventListener('click', () => {
+        document.getElementById('clear-waypoints-button').click();
+        document.getElementById('clear-buoys-button').click();
+        document.getElementById('clear-restricted-area-button').click();
+        
         // Import from json file
+        var input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'application/json';
+        input.onchange = function(event) {
+            var file = event.target.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        var data = JSON.parse(e.target.result);
+                        if (data.waypoints) {
+                            data.waypoints.forEach(wp => {
+                                var latlng = L.latLng(wp.lat, wp.lng);
+                                placeWaypoint({ latlng });
+                            });
+                        }
+                        if (data.buoys) {
+                            data.buoys.forEach(buoy => {
+                                var latlng = L.latLng(buoy.lat, buoy.lng);
+                                placeBuoy({ latlng });
+                            });
+                        }
+                        if (data.restrictedArea) {
+                            restrictedLatlngs[1] = data.restrictedArea.map(pt => L.latLng(pt.lat, pt.lng));
+                            placeRestrictedAreaPoint({ latlng: restrictedLatlngs[1][0] });
+                        }
+                    } catch (e) {
+                        alert("Failed to import waypoints: " + e.message);
+                    }
+                };
+                reader.readAsText(file);
+            }
+            input.remove();
+        };
+        input.click();
     });
 });
