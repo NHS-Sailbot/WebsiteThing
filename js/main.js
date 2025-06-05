@@ -202,4 +202,18 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('follow-boat-button').innerText = isFollowingBoat ? "Stop Following Boat" : "Follow Boat";
         if (isFollowingBoat) { map.setView(boat.getLatLng()); }
     });
+
+    document.getElementById('text-input').addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            var text = event.target.value.trim();
+            if (text) {
+                if (!confirm(`Are you sure you want to send the text: "${text}"?`)) {
+                    event.target.value = '';
+                    return;
+                }
+                socket.send(text);
+                event.target.value = '';
+            }
+        }
+    });
 });
