@@ -25,7 +25,6 @@ body {
     background: rgba(139, 224, 255, 0.75);
     padding: 16px;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     min-width: unset;
     display: flex;
     flex-direction: column;
@@ -83,7 +82,6 @@ input::placeholder {color: rgba(0, 0, 0, 0.75);  }
     z-index: 1100;
     background: rgba(139, 224, 255, 0.75);
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     padding: 16px;
     display: flex;
     flex-direction: column;
@@ -100,7 +98,7 @@ input::placeholder {color: rgba(0, 0, 0, 0.75);  }
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background-color: rgba(139, 224, 255, 0.75);
+    background-color: rgba(200, 240, 255, 0.75);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -158,13 +156,18 @@ input::placeholder {color: rgba(0, 0, 0, 0.75);  }
     max-width: 100%;
     max-height: 100%;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+#website-telemetry {
+    background: rgba(139, 224, 255, 0.75);
+    border-radius: 12px;
+    padding: 16px;
+    font-weight: bold;
 }
 #telemetry {
     min-height: 64px;
     background: rgba(139, 224, 255, 0.75);
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     padding: 16px;
     display: flex;
     flex-direction: column;
@@ -178,7 +181,6 @@ input::placeholder {color: rgba(0, 0, 0, 0.75);  }
 .camera-image {
     background: rgba(139, 224, 255, 0.75);
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     padding: 16px;
     display: flex;
     flex-direction: column;

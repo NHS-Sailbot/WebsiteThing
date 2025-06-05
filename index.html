@@ -14,14 +14,18 @@
 
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/main.js"></script>
+    <script src="js/communication.js"></script>
 </head>
 <body>
     <div id="top-left-corner">
+        <div id="website-telemetry">
+        </div>
         <div id="telemetry">
             NOT CONNECTED
         </div>
         <div class="camera-image">
             <button>Get Machine Vision Image</button>
+            <img id="camera-image" src="" alt="Camera Image" hidden />
         </div>
     </div>
     <div id="compass">
@@ -31,7 +35,7 @@
                 <div class="compass-marker e-marker">E</div>
                 <div class="compass-marker s-marker">S</div>
                 <div class="compass-marker w-marker">W</div>
-                <svg id="compass-arrow" viewBox="0 0 50 100" xmlns="http://www.w3.org/2000/svg">
+                <svg id="compass-arrow" viewBox="0 0 50 100">
                     <polygon points="25,0 50,85 25,70 0,85" fill="rgba(139, 125, 255, 1)"/>
                 </svg>
             </div>
@@ -40,14 +44,16 @@
     <div id="ui-controls">
         <input id="TextInput" type="text" placeholder="Text Input" />
         <div class="button-grid">
-            <button>Place Waypoints</button>
-            <button>Clear Waypoints</button>
-            <button>Place Restricted Area</button>
-            <button>Clear Restricted Area</button>
-            <button>Place Buoys</button>
-            <button>Clear Buoys</button>
-            <button>Enter Coordinates</button>
-            <button>Follow Boat</button>
+            <button id="place-waypoint-button">Place Waypoint</button>
+            <button id="clear-waypoints-button">Clear Waypoints</button>
+            <button id="place-restricted-area-button">Place Restricted Area</button>
+            <button id="clear-restricted-area-button">Clear Restricted Area</button>
+            <button id="place-buoys-button">Place Buoys</button>
+            <button id="clear-buoys-button">Clear Buoys</button>
+            <button id="enter-coordinates-button">Enter Coordinates</button>
+            <button id="follow-boat-button">Follow Boat</button>
+            <button id="export-waypoints-button">Export Waypoints</button>
+            <button id="import-waypoints-button">Import Waypoints</button>
         </div>
     </div>
     <div id="map"></div>
