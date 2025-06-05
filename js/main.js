@@ -25,13 +25,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     window.moveBoat = moveBoat;
 
-    const compassArrow = document.getElementById('compass-arrow');
-    function setCompassHeading(degrees) {
+    var compassWindArrow = document.getElementById('compass-wind-arrow');
+    function setWindCompass(degrees) {
         degrees = ((degrees % 360) + 360) % 360;
-        compassArrow.style.transform = `translateX(-50%) rotate(${degrees}deg)`;
+        compassWindArrow.style.transform = `translateX(-50%) rotate(${degrees}deg)`;
     }
-    setCompassHeading(0);
-    window.setCompassHeading = setCompassHeading;
+    setWindCompass(0);
+    window.setWindCompass = setWindCompass;
+
+    var compassHeadingArrow = document.getElementById('compass-heading-arrow');
+    function setHeadingCompass(degrees) {
+        degrees = ((degrees % 360) + 360) % 360;
+        compassHeadingArrow.style.transform = `translateX(-50%) rotate(${degrees}deg)`;
+    }
+    setHeadingCompass(0);
+    window.setHeadingCompass = setHeadingCompass;
 
     var websiteTelemetry = document.getElementById('website-telemetry');
     map.on("mousemove", (e) => { websiteTelemetry.innerText = `Lat: ${e.latlng.lat.toFixed(6)} Lng: ${e.latlng.lng.toFixed(6)}`; });

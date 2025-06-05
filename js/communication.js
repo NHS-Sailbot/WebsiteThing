@@ -63,7 +63,8 @@ function handleTelemetry(telemetry) {
     }
     */
 
-    setCompassHeading(telemetry.windSensor.direction);
+    setWindCompass(telemetry.windSensor.direction);
+    setHeadingCompass(telemetry.magnetometer.heading);
     moveBoat(telemetry.gps.latitude, telemetry.gps.longitude, telemetry.magnetometer.heading);
 
     var telemetryElement = document.getElementById("telemetry");
