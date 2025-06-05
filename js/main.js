@@ -8,6 +8,23 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}').addTo(map);
     
+    var boatIcon = L.icon({
+        iconUrl: 'images/boat.png',
+        iconSize: [50, 50],
+        iconAnchor: [25, 25],
+        popupAnchor: [0, -25]
+    });
+
+    var isFollowingBoat = false;
+    var boat = L.marker([42.27648680709905, -71.75747055885047], { icon: boatIcon }).addTo(map);
+    function moveBoat(lat, lng, heading) {
+        var visualHeading = heading - 90; // the boat image is rotated 90 degrees in the image, 0/360 is north
+        boat.setLatLng([lat, lng]);
+        boat.setRotationAngle(visualHeading);
+        if (isFollowingBoat) { map.setView([lat, lng]); }
+    }
+    window.moveBoat = moveBoat;
+
     const compassArrow = document.getElementById('compass-arrow');
     function setCompassHeading(degrees) {
         degrees = ((degrees % 360) + 360) % 360;
@@ -169,5 +186,10 @@ document.addEventListener('DOMContentLoaded', function() {
             input.remove();
         };
         input.click();
+    });
+    document.getElementById('follow-boat-button').addEventListener('click', () => {
+        isFollowingBoat = !isFollowingBoat;
+        document.getElementById('follow-boat-button').innerText = isFollowingBoat ? "Stop Following Boat" : "Follow Boat";
+        if (isFollowingBoat) { map.setView(boat.getLatLng()); }
     });
 });
