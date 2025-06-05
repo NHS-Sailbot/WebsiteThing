@@ -32,14 +32,14 @@ function handleImage(image) {
     /* Example image data structure
     {
     "type": "image",
-    "imageData": "BASE64_ENCODED_IMAGE_DATA_HERE"
+    "imageData": "BASE64_ENCODED_IMAGE_DATA_HERE",
+    "imageType": "jpeg"
     }
     */
 
     var base64 = image.imageData;
     var imageElement = document.getElementById("camera-image").getElementsByTagName("img")[0];
-    imageElement.src = "data:image/jpeg;base64," + base64;
-}
+    imageElement.src = `data:image/${image.imageType};base64,${base64}`;
 
 function handleTelemetry(telemetry) {
     /* Example telemetry data structure
