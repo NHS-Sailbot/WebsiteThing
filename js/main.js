@@ -126,8 +126,8 @@ document.addEventListener('DOMContentLoaded', function() {
             lng: circle.getLatLng().lng
             })),
             restrictedArea: restrictedLatlngs[1].map(latlng => ({
-            lat: latlng.lat,
-            lng: latlng.lng
+                lat: latlng.lat,
+                lng: latlng.lng
             }))
         };
         var data = JSON.stringify(objectToExport, null, 2);
@@ -174,8 +174,10 @@ document.addEventListener('DOMContentLoaded', function() {
                             });
                         }
                         if (data.restrictedArea) {
-                            restrictedLatlngs[1] = data.restrictedArea.map(pt => L.latLng(pt.lat, pt.lng));
-                            placeRestrictedAreaPoint({ latlng: restrictedLatlngs[1][0] });
+                            data.restrictedArea.forEach(point => {
+                                var latlng = L.latLng(point.lat, point.lng);
+                                placeRestrictedAreaPoint({ latlng });
+                            });
                         }
                     } catch (e) {
                         alert("Failed to import waypoints: " + e.message);
