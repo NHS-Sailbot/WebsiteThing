@@ -21,6 +21,13 @@ socket.addEventListener("message", (event) => {
     }
 });
 
+socket.addEventListener("close", (event) => {
+    console.log("WebSocket connection closed lost??", event);
+
+    var telemetryElement = document.getElementById("telemetry");
+    telemetryElement.innerHTML = `LOST CONNECTION: ${event.reason}`;
+});
+
 function handleImage(image) {
     /* Example image data structure
     {
