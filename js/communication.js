@@ -1,4 +1,4 @@
-const socket = new WebSocket("ws://localhost:5000/sailbot"); // change this to use the host name of the sailbox
+const socket = new WebSocket("ws://sailbot:5000/sailbot"); // change this to use the host name of the sailbox
 setTimeout(() => {
     if (socket.readyState !== WebSocket.OPEN) { alert("Failed to connect to the Sailbot. Pester Chris to fix it!"); }
 }, 5000);
