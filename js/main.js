@@ -220,6 +220,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('camera-button').addEventListener('click', () => {
         // Request the latest image from the server
         // { "type": "requestImage" }
-        socket.send(JSON.stringify({ type: "requestImage" }));
+        socket.send(JSON.stringify({ "type" : "requestImage" }));
     });
 });
