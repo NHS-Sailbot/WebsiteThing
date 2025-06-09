@@ -14,7 +14,7 @@ function timeoutFunction() {
 
             setTimeout(timeoutFunction, 5000); // Retry after 5 seconds
         } else {
-            alert("Failed to connect to the Sailbot. Pester Chris to fix it!");
+            alert("Failed to connect to the Sailbot. That's a pi-3 for ya.");
             var telemetryElement = document.getElementById("telemetry");
             telemetryElement.innerHTML = "Failed to connect to the Sailbot.";
         }
