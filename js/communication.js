@@ -1,7 +1,26 @@
-const socket = new WebSocket("ws://sailbot:5000/sailbot"); // change this to use the host name of the sailbox
-setTimeout(() => {
-    if (socket.readyState !== WebSocket.OPEN) { alert("Failed to connect to the Sailbot. Pester Chris to fix it!"); }
-}, 5000);
+socket = new WebSocket("ws://sailbot:5000/sailbot"); // change this to use the host name of the sailbox
+var checkedLocalhost = false;
+function timeoutFunction() {
+    console.log("Checking if the Sailbot is online...");
+    if (socket.readyState !== WebSocket.OPEN) {
+        if (!checkedLocalhost) {
+            console.log("Trying to connect to localhost as a fallback...");
+            socket.close();
+            checkedLocalhost = true;
+            socket = new WebSocket("ws://localhost:5000/sailbot"); // Fallback to localhost
+
+            var telemetryElement = document.getElementById("telemetry");
+            telemetryElement.innerHTML = "Trying to connect to localhost...";
+
+            setTimeout(timeoutFunction, 5000); // Retry after 5 seconds
+        } else {
+            alert("Failed to connect to the Sailbot. Pester Chris to fix it!");
+            var telemetryElement = document.getElementById("telemetry");
+            telemetryElement.innerHTML = "Failed to connect to the Sailbot.";
+        }
+    }
+}
+setTimeout(timeoutFunction, 5000);
 
 socket.addEventListener("message", (event) => {
     var telemetryMessage = event.data.trim();
@@ -26,6 +45,12 @@ socket.addEventListener("close", (event) => {
 
     var telemetryElement = document.getElementById("telemetry");
     telemetryElement.innerHTML = `LOST CONNECTION: ${event.reason}`;
+});
+
+socket.addEventListener("open", (event) => {
+    console.log("WebSocket connection established");
+    var telemetryElement = document.getElementById("telemetry");
+    telemetryElement.innerHTML = "Connected to Sailbot!";
 });
 
 function handleImage(image) {
