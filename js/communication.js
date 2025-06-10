@@ -36,6 +36,9 @@ socket.addEventListener("message", (event) => {
             console.error("Error parsing telemetry data: ", e);
         }
     } else {
+        var logTextbox = document.getElementById("log-textbox");
+        logTextbox.innerHTML += `${event.data}\n`;
+        logTextbox.scrollTop = logTextbox.scrollHeight;
         console.log(event.data);
     }
 });
