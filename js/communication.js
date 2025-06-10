@@ -1,5 +1,7 @@
 socket = new WebSocket("ws://sailbot:5000/sailbot"); // change this to use the host name of the sailbox
 var checkedLocalhost = false;
+let fullImageData;
+
 function timeoutFunction() {
     console.log("Checking if the Sailbot is online...");
     if (socket.readyState !== WebSocket.OPEN) {
@@ -14,7 +16,7 @@ function timeoutFunction() {
 
             setTimeout(timeoutFunction, 5000); // Retry after 5 seconds
         } else {
-            alert("Failed to connect to the Sailbot. IT'S SO OVER!");
+            alert("Failed to connect to the Sailbot. That's a pi-3 for ya.");
             var telemetryElement = document.getElementById("telemetry");
             telemetryElement.innerHTML = "Failed to connect to the Sailbot.";
         }
@@ -64,8 +66,16 @@ function handleImage(image) {
 
     var base64 = image.imageData;
     var imageElement = document.getElementById("camera-image");
+
     imageElement.src = `data:image/${image.imageType};base64,${base64}`;
     imageElement.style.display = "block";
+
+    fullImageData = `data:image/${image.imageType};base64,${base64}`;
+
+    console.log(fullImageData);
+
+    window.localStorage.setItem("sharedImg", fullImageData); 
+
 }
 
 function handleTelemetry(telemetry) {

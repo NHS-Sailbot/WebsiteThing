@@ -1,16 +1,12 @@
 // Stuff that has to happen after the DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {   
+document.addEventListener('DOMContentLoaded', function() {
     var map = L.map('map', {
         center: [42.27648680709905, -71.75747055885047],
         zoom: 18,
-        maxZoom: 24,  // Allowing much deeper zoom levels
         zoomControl: false,
         attributionControl: false
     });
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        maxZoom: 24,
-        maxNativeZoom: 19  // This is the maximum zoom level the tiles support natively
-    }).addTo(map);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}').addTo(map);
     
     var boatIcon = L.icon({
         iconUrl: 'images/boat.png',
@@ -226,4 +222,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // { "type": "requestImage" }
         socket.send(JSON.stringify({ "type" : "requestImage" }));
     });
+
+    
+
+    
+
 });
+
+function ViewFull() {
+    console.log('Initalizing 360 view');
+    window.open("360Viewer.html", "_blank");
+};
