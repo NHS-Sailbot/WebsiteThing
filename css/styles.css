@@ -85,8 +85,6 @@ input::placeholder {color: rgba(0, 0, 0, 0.75);  }
     flex-direction: column;
     gap: 16px;
 
-    width: calc(16vw + 32px); /* Account for padding on both sides of compass */
-    min-width: calc(64px + 32px); /* Account for padding */
     height: auto;
     max-height: 75vh;
     overflow-y: auto;
@@ -172,7 +170,7 @@ input::placeholder {color: rgba(0, 0, 0, 0.75);  }
     min-width: 256px;
     width: 32vw;
     height: auto;
-    max-height: 75vh;
+    max-height: 60vh;
     overflow-y: auto;
 
 }
@@ -212,7 +210,7 @@ input::placeholder {color: rgba(0, 0, 0, 0.75);  }
     gap: 16px;
 }
 
-#game-container {
+#log-container {
     gap: 16px;
     padding: 16px;
     display: flex;
@@ -221,4 +219,30 @@ input::placeholder {color: rgba(0, 0, 0, 0.75);  }
     background: rgba(139, 224, 255, 0.75);
     border-radius: 12px;
     flex-direction: column;
+    max-width: 50vw;
+}
+
+#log-textbox {
+    height: 30vh;
+    max-height: 60vh;
+    width: 45vw;
+    max-width: 70vw;
+    overflow-y: auto;
+    overflow-x: auto;
+    text-wrap-mode: nowrap;
+    display: none;
+    background-color: black;
+    color: rgb(0, 189, 0);
+    text-shadow:
+    0 0 10px rgb(0, 189, 0),  /*  Outer glow */
+    0 0 20px rgb(0, 189, 0);
+}
+
+#games-buttons {
+    background: rgba(139, 224, 255, 0.75);
+    border-radius: 12px;
+    padding: 16px;
+    font-weight: bold;
+    display: flex;
+    gap: 16px;
 }

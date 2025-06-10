@@ -227,3 +227,15 @@ document.addEventListener('DOMContentLoaded', function() {
         socket.send(JSON.stringify({ "type" : "requestImage" }));
     });
 });
+
+function openLog() {
+    document.getElementById('log-textbox').style.display = "flex";
+    document.getElementById('openLog').onclick = closeLog;
+    document.getElementById('openLog').innerText = "Close Log";
+}
+
+function closeLog() {
+    document.getElementById('log-textbox').style.display = "none";
+    document.getElementById('openLog').onclick = openLog;
+    document.getElementById('openLog').innerText = "Open Log";
+}

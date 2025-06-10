@@ -27,6 +27,10 @@
             <button id="camera-button">Get Machine Vision Image</button>
             <img id="camera-image" src="" alt="Camera Image" style="display: none;" />
         </div>
+        <div id="games-buttons">
+        <button onclick="window.open('https://Balatro.computery.dev', '_blank')">Balatro</button>
+        <button onclick="window.open('https://Nubbys.computery.dev', '_blank')">NNF</button>
+    </div>
     </div>
     <div id="top-right-corner">
         <div id="compass">
@@ -45,9 +49,11 @@
                 </div>
             </div>
         </div>
-        <div id="game-container">
-            <button onclick="window.open('https://Balatro.computery.dev', '_blank')">Play Balatro in Web Browser</button>
-            <button onclick="window.open('https://Nubbys.computery.dev', '_blank')">Play Nubby's Number Factory in Web Browser</button>
+        <div id="log-container">
+            <button id="openLog" onclick="openLog()">Open Log</button>
+            <textarea id="log-textbox" readonly>
+aiuihsdfhbdbhkdfkhblgvyftdxrtctfvygbihjnmnhygvbftcdvghjnmkhnutyfgvbdcrtvghjnkmhfgvdcxsecfgvhjntyfgvbdrcxescfvgtdcrxse
+              </textarea>
         </div>
     </div>
     <div id="ui-controls">
@@ -63,6 +69,7 @@
             <button id="follow-boat-button">Follow Boat</button>
             <button id="export-button">Export Waypoints</button>
             <button id="import-button">Import Waypoints</button>
+
         </div>
     </div>
     <div id="map"></div>
