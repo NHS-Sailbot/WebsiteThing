@@ -1,4 +1,4 @@
-socket = new WebSocket("ws://sailbot:5000/sailbot"); // change this to use the host name of the sailbox
+socket = new WebSocket("ws://sailbox:5000/sailbot"); // change this to use the host name of the sailbox
 var checkedLocalhost = false;
 function timeoutFunction() {
     console.log("Checking if the Sailbot is online...");
