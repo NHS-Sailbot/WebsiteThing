@@ -1,7 +1,7 @@
 // Stuff that has to happen after the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {   
     var map = L.map('map', {
-        center: [42.46218822683541, -76.50823116302492],
+        center: [42.469464, -76.503211],
         zoom: 18,
         maxZoom: 24,  // Allowing much deeper zoom levels
         zoomControl: false,
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     var isFollowingBoat = false;
-    var boat = L.marker([42.46218822683541, -76.50823116302492], { icon: boatIcon }).addTo(map);
+    var boat = L.marker([42.469464, -76.503211], { icon: boatIcon }).addTo(map);
     function moveBoat(lat, lng, heading) {
         var visualHeading = heading - 90; // the boat image is rotated 90 degrees in the image, 0/360 is north
         boat.setLatLng([lat, lng]);
